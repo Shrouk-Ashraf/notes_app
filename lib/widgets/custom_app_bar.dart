@@ -8,6 +8,7 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      scrolledUnderElevation: 0,
       title: const Text("Notes",),
       titleSpacing: 0,
       actions:const [
