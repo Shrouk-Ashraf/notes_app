@@ -9,6 +9,7 @@ class CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: const Text("Notes",),
+      titleSpacing: 0,
       actions:const [
          CustomSearchIcon()
       ],
