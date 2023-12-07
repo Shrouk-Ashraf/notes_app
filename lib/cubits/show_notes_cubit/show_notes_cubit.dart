@@ -10,13 +10,9 @@ part 'show_notes_state.dart';
 class ShowNotesCubit extends Cubit<ShowNotesState> {
   ShowNotesCubit() : super(ShowNotesInitial());
 
+  List<NoteModel>? notes;
   showAllNotes(){
-    try{
       var notesBox = Hive.box<NoteModel>(kNotesBox);
-      List<NoteModel> notes = notesBox.values.toList();
-      emit(ShowNotesSuccess(notes));
-    }catch(e){
-      emit(ShowNotesFailure(e.toString()));
-    }
+      notes = notesBox.values.toList();
   }
 }
