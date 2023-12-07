@@ -5,15 +5,15 @@ abstract class ShowNotesState {}
 
 class ShowNotesInitial extends ShowNotesState {}
 
-class ShowNotesLoading extends ShowNotesCubit{}
+class ShowNotesLoading extends ShowNotesState{}
 
-class ShowNotesSuccess extends ShowNotesCubit{
+class ShowNotesSuccess extends ShowNotesState{
   final List<NoteModel> notes;
 
   ShowNotesSuccess(this.notes);
 }
 
-class ShowNotesFailure extends ShowNotesCubit{
+class ShowNotesFailure extends ShowNotesState{
   final String errorMessage;
   ShowNotesFailure(this.errorMessage);
 }
