@@ -5,3 +5,4 @@ abstract class ShowNotesState {}
 
 class ShowNotesInitial extends ShowNotesState {}
 
+class ShowNotesSuccess extends ShowNotesState{}

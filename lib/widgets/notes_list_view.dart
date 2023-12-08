@@ -11,9 +11,10 @@ class NotesListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('build');
     return BlocBuilder<ShowNotesCubit, ShowNotesState>(
       builder: (context, state) {
-        BlocProvider.of<ShowNotesCubit>(context).showAllNotes();
+        // BlocProvider.of<ShowNotesCubit>(context).showAllNotes();
         List<NoteModel> notes = BlocProvider.of<ShowNotesCubit>(context).notes!;
 
         return Padding(
