@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
 
+import 'color_list_view.dart';
 import 'custom_button.dart';
 import 'custom_text_field.dart';
 
@@ -46,33 +47,39 @@ class _AddNoteFormState extends State<AddNoteForm> {
             maxLines: 5,
           ),
           const SizedBox(height: 32,),
+          const ColorListView(),
+          const SizedBox(height: 32,),
           BlocBuilder<AddNoteCubit, AddNoteState>(
             builder: (context, state) {
               return CustomButton(
                 isLoading: state is AddNoteLoading ? true: false,
-                onTap: () {
-                  if (formKey.currentState!.validate()) {
-                    formKey.currentState!
-                        .save(); //to call onSaved method in textFormField
-                    String date = DateFormat.yMMMd().format(DateTime.now());
-                    var noteModel = NoteModel(
-                        title: title!,
-                        subTitle: subTitle!,
-                        date: date,
-                        color: Colors.red.value);
-                    BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
-                  } else {
-                    setState(() {
-                      autovalidateMode = AutovalidateMode.always;
-                    });
-                  }
-                },
+                onTap:onTapValidation
+                ,
               );
             },
           ),
         ],
       ),
     );
+  }
+
+
+  void onTapValidation() {
+    if (formKey.currentState!.validate()) {
+      formKey.currentState!
+          .save(); //to call onSaved method in textFormField
+      String date = DateFormat.yMMMd().format(DateTime.now());
+      var noteModel = NoteModel(
+          title: title!,
+          subTitle: subTitle!,
+          date: date,
+          color: Colors.red.value);
+      BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
+    } else {
+      setState(() {
+        autovalidateMode = AutovalidateMode.always;
+      });
+    }
   }
 }
 
